@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class CreatePage extends StatelessWidget {
-  const CreatePage({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const String pageTitle = 'Create Page';
+    const String pageTitle = 'Profile Page';
 
     return Scaffold(
       appBar: AppBar(
@@ -23,40 +23,23 @@ class CreatePage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                context.go('/home');
-              },
-              child: const Text('Home'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                context.go('/categories');
-              },
-              child: const Text('Categories'),
-            ),
-            ElevatedButton(
-              onPressed: () {
                 context.go('/person');
               },
               child: const Text('Person'),
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                context.go('/destination');
+                context.go('/luggage');
               },
-              child: const Text('Destination'),
+              child: const Text('Luggage'),
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                context.go('/activities');
+                context.go('/items');
               },
-              child: const Text('Activities'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context.go('/details');
-              },
-              child: const Text('Details'),
+              child: const Text('Items'),
             ),
           ],
         ),

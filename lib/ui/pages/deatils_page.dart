@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const String pageTitle = 'Home Page';
+    const String pageTitle = 'Details Page';
 
     return Scaffold(
       appBar: AppBar(
@@ -23,28 +23,16 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                context.go('/details');
+                context.go('/home');
               },
-              child: const Text('Details'),
+              child: const Text('Home'),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                context.go('/profile');
-              },
-              child: const Text('Profile'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context.go('/settings');
-              },
-              child: const Text('Settings'),
-            ),
-            ElevatedButton(
-              onPressed: () {
                 context.go('/create');
               },
-              child: const Text('Create'),
+              child: const Text('create'),
             ),
           ],
         ),
