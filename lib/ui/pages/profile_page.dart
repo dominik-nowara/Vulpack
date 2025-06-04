@@ -37,7 +37,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                context.go('/items');
+                context.push('/items');
               },
               child: const Text('Items'),
             ),
