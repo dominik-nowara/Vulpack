@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vulpack/pages/home_page.dart';
 import 'package:vulpack/services/navigation/navigation.dart';
 
 void main() {
