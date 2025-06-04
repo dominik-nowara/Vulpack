@@ -23,14 +23,14 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                context.go('/person');
+                context.push('/person');
               },
               child: const Text('Person'),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                context.go('/luggage');
+                context.push('/luggage');
               },
               child: const Text('Luggage'),
             ),
