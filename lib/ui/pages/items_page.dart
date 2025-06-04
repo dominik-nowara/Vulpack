@@ -40,72 +40,72 @@ class _ItemsPageState extends State<ItemsPage> with SingleTickerProviderStateMix
     '🧻 Tissues',
   ];
 
+  // Custom Items Lists
+  final List<String> customClothingItems = [
+    '🧸 Cuddly Toy',
+    '🧩 Puzzle',
+    '🎨 Art Supplies',
+
+  ];
+
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        title: const Text('Items'),
-        leading: const CustomBackButton(),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: AddButton(route: '/create-items'),
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: AppColors.background,
+    appBar: const CustomAppBarWithAdd(
+      title: 'Items',
+      addButtonRoute: '/create-items',
+    ),
+    body: Column(
+      children: [
+        const SizedBox(height: 10),
+        _buildTabBar(),
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              _buildStandardItemListView(),
+              _buildCustomItemListView(),
+            ],
           ),
-        ],
-        backgroundColor: Colors.white,
-        elevation: 0,
+        ),
+      ],
+    ),
+  );
+}
+  Widget _buildTabBar() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF1EEF5),
+        borderRadius: BorderRadius.circular(12),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 10),
-          _buildTabBar(),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                _buildItemListView(), // Standard
-                const Center(child: Text('Custom Items')), // später erweiterbar
-              ],
-            ),
-          ),
+      child: TabBar(
+        controller: _tabController,
+        indicator: BoxDecoration(
+          color: const Color(0xFFB5AFC3),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        indicatorSize: TabBarIndicatorSize.tab,
+        dividerColor: Colors.transparent,
+        labelColor: Colors.white,
+        unselectedLabelColor: Colors.black,
+        tabs: const [
+          Tab(text: 'Standard'),
+          Tab(text: 'Custom'),
         ],
       ),
     );
   }
 
-Widget _buildTabBar() {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-    decoration: BoxDecoration(
-      color: const Color(0xFFF1EEF5),
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: TabBar(
-      controller: _tabController,
-      indicator: BoxDecoration(
-        color: const Color(0xFFB5AFC3),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      indicatorSize: TabBarIndicatorSize.tab, // Füllt die ganze Tab-Breite
-      dividerColor: Colors.transparent, // Entfernt die Standard-Trennlinie
-      labelColor: Colors.white,
-      unselectedLabelColor: Colors.black,
-      tabs: const [
-        Tab(text: 'Standard'),
-        Tab(text: 'Custom'),
-      ],
-    ),
-  );
-}
-
-  Widget _buildItemListView() {
+  Widget _buildStandardItemListView() {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       children: [
@@ -114,6 +114,18 @@ Widget _buildTabBar() {
         const SizedBox(height: 16),
         _buildSectionTitle('Cosmetics'),
         ...cosmeticItems.map(_buildItemCard).toList(),
+      ],
+    );
+  }
+
+  Widget _buildCustomItemListView() {
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      children: [
+        _buildSectionTitle('Custom'),
+        ...customClothingItems.map(_buildItemCard).toList(),
+        const SizedBox(height: 16),
+
       ],
     );
   }

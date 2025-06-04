@@ -55,3 +55,44 @@ class AddButton extends StatelessWidget {
     );
   }
 }
+
+class CustomAppBarWithAdd extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final String addButtonRoute;
+  final String addButtonLabel;
+  final VoidCallback? onBackPressed;
+  final Color? backgroundColor;
+  final double elevation;
+
+  const CustomAppBarWithAdd({
+    Key? key,
+    required this.title,
+    required this.addButtonRoute,
+    this.addButtonLabel = '+ Add',
+    this.onBackPressed,
+    this.backgroundColor = Colors.white,
+    this.elevation = 0,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(title),
+      leading: CustomBackButton(onPressed: onBackPressed),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 12.0),
+          child: AddButton(
+            route: addButtonRoute,
+            label: addButtonLabel,
+          ),
+        ),
+      ],
+      backgroundColor: backgroundColor,
+      elevation: elevation,
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
