@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vulpack/theme/app_colors.dart';
+import 'package:vulpack/theme/app_sizes.dart';
 
 class VulpackInputField extends StatelessWidget {
   final TextEditingController? controller;
@@ -30,11 +32,11 @@ class VulpackInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSizes.radiusLg),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: AppColors.black.withOpacity(0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -50,22 +52,26 @@ class VulpackInputField extends StatelessWidget {
         onTap: onTap,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: const TextStyle(
-            color: Colors.grey,
-            fontSize: 16,
+          hintStyle: TextStyle(
+            color: AppColors.textTertiary,
+            fontSize: AppSizes.textBase,
           ),
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppSizes.radiusLg),
             borderSide: BorderSide.none,
           ),
           filled: true,
-          fillColor: Colors.white,
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 16,
+          fillColor: AppColors.surface,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: AppSizes.md,
+            vertical: AppSizes.md,
           ),
+        ),
+        style: TextStyle(
+          color: AppColors.textPrimary,
+          fontSize: AppSizes.textBase,
         ),
       ),
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vulpack/theme/app_colors.dart';
+import 'package:vulpack/theme/app_sizes.dart';
 
 class VulpackDatePicker extends StatelessWidget {
   final DateTime selectedDate;
@@ -18,11 +20,11 @@ class VulpackDatePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSizes.radiusLg),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: AppColors.black.withOpacity(0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -40,25 +42,25 @@ class VulpackDatePicker extends StatelessWidget {
             onDateChanged(picked);
           }
         } : null,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppSizes.radiusLg),
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 16,
+          padding: EdgeInsets.symmetric(
+            horizontal: AppSizes.md,
+            vertical: AppSizes.md,
           ),
           child: Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.calendar_today,
-                color: Colors.black87,
-                size: 20,
+                color: AppColors.textPrimary,
+                size: AppSizes.iconSm,
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: AppSizes.sm),
               Text(
                 '${selectedDate.month.toString().padLeft(2, '0')}/${selectedDate.day.toString().padLeft(2, '0')}/${selectedDate.year}',
                 style: TextStyle(
-                  color: enabled ? Colors.black87 : Colors.grey,
-                  fontSize: 16,
+                  color: enabled ? AppColors.textPrimary : AppColors.textDisabled,
+                  fontSize: AppSizes.textBase,
                 ),
               ),
             ],

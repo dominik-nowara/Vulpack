@@ -1,5 +1,5 @@
-import '../../models/person.dart';
-import '../../models/item.dart';
+import '../../../models/person.dart';
+import '../../../models/item.dart';
 
 abstract class PersonRepository {
   // Basic CRUD operations

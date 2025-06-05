@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vulpack/theme/app_colors.dart';
+import 'package:vulpack/theme/app_sizes.dart';
 
 class VulpackCard extends StatelessWidget {
   final String title;
@@ -21,13 +23,13 @@ class VulpackCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(AppSizes.sm),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(AppSizes.radiusLg),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
+              color: AppColors.textTertiary.withOpacity(0.2),
               spreadRadius: 1,
               blurRadius: 6,
               offset: const Offset(0, 3),
@@ -35,30 +37,30 @@ class VulpackCard extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(AppSizes.md),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Title
               Text(
                 title,
-                style: const TextStyle(
-                  fontSize: 20,
+                style: TextStyle(
+                  fontSize: AppSizes.textXl,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+                  color: AppColors.textPrimary,
                 ),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: AppSizes.sm),
               
               // Date range if provided
               if (dateRange != null)
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
+                  padding: EdgeInsets.only(bottom: AppSizes.sm),
                   child: Text(
                     dateRange!,
                     style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[600],
+                      fontSize: AppSizes.textSm,
+                      color: AppColors.textSecondary,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -68,17 +70,17 @@ class VulpackCard extends StatelessWidget {
               Text(
                 description,
                 style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[700],
+                  fontSize: AppSizes.textSm,
+                  color: AppColors.textSecondary,
                   height: 1.4,
                 ),
               ),
               
               // Image if provided
               if (imageUrl != null) ...[
-                const SizedBox(height: 12),
+                SizedBox(height: AppSizes.sm),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(AppSizes.radiusMd),
                   child: Image.network(
                     imageUrl!,
                     width: double.infinity,
@@ -89,12 +91,12 @@ class VulpackCard extends StatelessWidget {
                         width: double.infinity,
                         height: 150,
                         decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(8.0),
+                          color: AppColors.surfaceVariant,
+                          borderRadius: BorderRadius.circular(AppSizes.radiusMd),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.image_not_supported,
-                          color: Colors.grey,
+                          color: AppColors.textTertiary,
                           size: 50,
                         ),
                       );

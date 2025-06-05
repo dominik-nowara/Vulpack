@@ -1,5 +1,5 @@
-import '../../models/trip.dart';
-import '../../models/person.dart';
+import '../../../models/trip.dart';
+import '../../../models/person.dart';
 
 abstract class TripRepository {
   // Basic CRUD operations

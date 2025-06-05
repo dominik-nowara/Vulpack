@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:vulpack/theme/app_colors.dart';
+import 'package:vulpack/theme/app_sizes.dart';
 
 class VulpackCheckbox extends StatefulWidget {
   final bool value;
   final ValueChanged<bool>? onChanged;
-  final double size;
-  final double borderRadius;
-  final Color checkedColor;
-  final Color uncheckedColor;
-  final Color checkColor;
+  final double? size;
+  final double? borderRadius;
+  final Color? checkedColor;
+  final Color? uncheckedColor;
+  final Color? checkColor;
 
   const VulpackCheckbox({
     Key? key,
     required this.value,
     this.onChanged,
-    this.size = 56.0,
-    this.borderRadius = 12.0,
-    this.checkedColor = const Color(0xFFFF6B35),
-    this.uncheckedColor = const Color(0xFFE8E4F3),
-    this.checkColor = Colors.white,
+    this.size,
+    this.borderRadius,
+    this.checkedColor,
+    this.uncheckedColor,
+    this.checkColor,
   }) : super(key: key);
 
   @override
@@ -69,19 +71,25 @@ class _VulpackCheckboxState extends State<VulpackCheckbox>
 
   @override
   Widget build(BuildContext context) {
+    final size = widget.size ?? AppSizes.lg;
+    final borderRadius = widget.borderRadius ?? AppSizes.radiusMd;
+    final checkedColor = widget.checkedColor ?? AppColors.primary;
+    final uncheckedColor = widget.uncheckedColor ?? AppColors.secondaryLight;
+    final checkColor = widget.checkColor ?? AppColors.white;
+
     return GestureDetector(
       onTap: widget.onChanged != null
           ? () => widget.onChanged!(!widget.value)
           : null,
       child: Container(
-        width: widget.size,
-        height: widget.size,
+        width: size,
+        height: size,
         decoration: BoxDecoration(
-          color: widget.value ? widget.checkedColor : widget.uncheckedColor,
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+          color: widget.value ? checkedColor : uncheckedColor,
+          borderRadius: BorderRadius.circular(borderRadius),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: AppColors.black.withOpacity(0.1),
               blurRadius: 4,
               offset: const Offset(0, 2),
             ),
@@ -94,8 +102,8 @@ class _VulpackCheckboxState extends State<VulpackCheckbox>
               scale: _scaleAnimation.value,
               child: Icon(
                 Icons.check,
-                color: widget.checkColor,
-                size: widget.size * 0.5,
+                color: checkColor,
+                size: size * 0.5,
               ),
             );
           },

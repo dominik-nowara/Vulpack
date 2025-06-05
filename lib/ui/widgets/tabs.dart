@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:vulpack/theme/app_colors.dart';
+import 'package:vulpack/theme/app_sizes.dart';
 
 class VulpackTabsWidget extends StatefulWidget {
   final List<String> tabs;
   final Function(int)? onTabChanged;
+  final Duration animationDuration;
 
   const VulpackTabsWidget({
     Key? key,
     required this.tabs,
     this.onTabChanged,
+    this.animationDuration = const Duration(milliseconds: 250),
   }) : super(key: key);
 
   @override
@@ -20,10 +24,17 @@ class _VulpackTabsWidgetState extends State<VulpackTabsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(AppSizes.sm),
       decoration: BoxDecoration(
-        color: const Color(0xFFF5F5F7),
-        borderRadius: BorderRadius.circular(16.0),
+        color: AppColors.surfaceVariant,
+        borderRadius: BorderRadius.circular(AppSizes.radiusXl),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withOpacity(0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Row(
         children: widget.tabs.asMap().entries.map((entry) {
@@ -39,25 +50,38 @@ class _VulpackTabsWidgetState extends State<VulpackTabsWidget> {
                 });
                 widget.onTabChanged?.call(index);
               },
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16.0,
-                  horizontal: 20.0,
+              child: AnimatedContainer(
+                duration: widget.animationDuration,
+                curve: Curves.easeInOut,
+                padding: EdgeInsets.symmetric(
+                  vertical: AppSizes.md,
+                  horizontal: AppSizes.sm,
                 ),
-                margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                margin: EdgeInsets.symmetric(horizontal: AppSizes.xs),
                 decoration: BoxDecoration(
                   color: isSelected 
-                    ? const Color(0xFF6B6B7D) 
-                    : Colors.transparent,
-                  borderRadius: BorderRadius.circular(12.0),
+                      ? AppColors.secondary 
+                      : AppColors.white.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(AppSizes.radiusLg),
+                  boxShadow: isSelected ? [
+                    BoxShadow(
+                      color: AppColors.secondary.withOpacity(0.3),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    ),
+                  ] : null,
                 ),
-                child: Text(
-                  tabText,
-                  textAlign: TextAlign.center,
+                child: AnimatedDefaultTextStyle(
+                  duration: widget.animationDuration,
+                  curve: Curves.easeInOut,
                   style: TextStyle(
-                    color: isSelected ? Colors.white : const Color(0xFF2C2C2E),
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
+                    color: isSelected ? AppColors.white : AppColors.textPrimary,
+                    fontSize: AppSizes.textBase,
+                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  ),
+                  child: Text(
+                    tabText,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vulpack/theme/app_colors.dart';
+import 'package:vulpack/theme/app_sizes.dart';
 
 enum ButtonVariant {
   primary,
@@ -18,8 +20,8 @@ class VulpackButton extends StatelessWidget {
   final ButtonVariant variant;
   final VulpackButtonStyle buttonStyle;
   final double? width;
-  final double height;
-  final double borderRadius;
+  final double? height;
+  final double? borderRadius;
 
   const VulpackButton({
     Key? key,
@@ -28,25 +30,27 @@ class VulpackButton extends StatelessWidget {
     this.variant = ButtonVariant.primary,
     this.buttonStyle = VulpackButtonStyle.filled,
     this.width,
-    this.height = 48.0,
-    this.borderRadius = 8.0,
+    this.height,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final colors = _getColors();
     final isDisabled = onPressed == null;
+    final effectiveHeight = height ?? AppSizes.buttonHeight;
+    final effectiveRadius = borderRadius ?? AppSizes.radiusMd;
     
     return SizedBox(
       width: width,
-      height: height,
-      child: VulpackButtonStyle == VulpackButtonStyle.filled
-          ? _buildFilledButton(colors, isDisabled)
-          : _buildOutlinedButton(colors, isDisabled),
+      height: effectiveHeight,
+      child: buttonStyle == VulpackButtonStyle.filled
+          ? _buildFilledButton(colors, isDisabled, effectiveRadius)
+          : _buildOutlinedButton(colors, isDisabled, effectiveRadius),
     );
   }
 
-  Widget _buildFilledButton(_ButtonColors colors, bool isDisabled) {
+  Widget _buildFilledButton(_ButtonColors colors, bool isDisabled, double radius) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
@@ -55,21 +59,21 @@ class VulpackButton extends StatelessWidget {
         elevation: 0,
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(radius),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.md),
       ),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 16,
+        style: TextStyle(
+          fontSize: AppSizes.textBase,
           fontWeight: FontWeight.w500,
         ),
       ),
     );
   }
 
-  Widget _buildOutlinedButton(_ButtonColors colors, bool isDisabled) {
+  Widget _buildOutlinedButton(_ButtonColors colors, bool isDisabled, double radius) {
     return OutlinedButton(
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
@@ -82,14 +86,14 @@ class VulpackButton extends StatelessWidget {
         elevation: 0,
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(radius),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.md),
       ),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 16,
+        style: TextStyle(
+          fontSize: AppSizes.textBase,
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -100,35 +104,35 @@ class VulpackButton extends StatelessWidget {
     switch (variant) {
       case ButtonVariant.primary:
         return _ButtonColors(
-          background: const Color(0xFFE97A34), // Orange
-          text: Colors.white,
-          disabledBackground: const Color(0xFFE97A34).withOpacity(0.5),
-          disabledText: Colors.white.withOpacity(0.7),
-          disabledBorder: const Color(0xFFE97A34).withOpacity(0.3),
+          background: AppColors.primary,
+          text: AppColors.white,
+          disabledBackground: AppColors.primary.withOpacity(0.5),
+          disabledText: AppColors.white.withOpacity(0.7),
+          disabledBorder: AppColors.primary.withOpacity(0.3),
         );
       case ButtonVariant.secondary:
         return _ButtonColors(
-          background: const Color(0xFF6B7280), // Gray
-          text: Colors.white,
-          disabledBackground: const Color(0xFF6B7280).withOpacity(0.5),
-          disabledText: Colors.white.withOpacity(0.7),
-          disabledBorder: const Color(0xFF6B7280).withOpacity(0.3),
+          background: AppColors.secondary,
+          text: AppColors.white,
+          disabledBackground: AppColors.secondary.withOpacity(0.5),
+          disabledText: AppColors.white.withOpacity(0.7),
+          disabledBorder: AppColors.secondary.withOpacity(0.3),
         );
       case ButtonVariant.dangerous:
         return _ButtonColors(
-          background: const Color(0xFFEF4444), // Red
-          text: Colors.white,
-          disabledBackground: const Color(0xFFEF4444).withOpacity(0.5),
-          disabledText: Colors.white.withOpacity(0.7),
-          disabledBorder: const Color(0xFFEF4444).withOpacity(0.3),
+          background: AppColors.error,
+          text: AppColors.white,
+          disabledBackground: AppColors.error.withOpacity(0.5),
+          disabledText: AppColors.white.withOpacity(0.7),
+          disabledBorder: AppColors.error.withOpacity(0.3),
         );
       case ButtonVariant.positive:
         return _ButtonColors(
-          background: const Color(0xFF10B981), // Green
-          text: Colors.white,
-          disabledBackground: const Color(0xFF10B981).withOpacity(0.5),
-          disabledText: Colors.white.withOpacity(0.7),
-          disabledBorder: const Color(0xFF10B981).withOpacity(0.3),
+          background: AppColors.success,
+          text: AppColors.white,
+          disabledBackground: AppColors.success.withOpacity(0.5),
+          disabledText: AppColors.white.withOpacity(0.7),
+          disabledBorder: AppColors.success.withOpacity(0.3),
         );
     }
   }

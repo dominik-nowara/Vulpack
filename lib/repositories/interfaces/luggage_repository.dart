@@ -1,4 +1,4 @@
-import '../../models/luggage.dart';
+import '../../../models/luggage.dart';
 
 abstract class LuggageRepository {
   // Basic CRUD operations
