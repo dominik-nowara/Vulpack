@@ -1,6 +1,14 @@
-class Item {
+import 'package:hive/hive.dart';
+
+@HiveType(typeId: 0) // Unique typeId for this class
+class Item extends HiveObject {
+  @HiveField(0)
   final String name;
+  
+  @HiveField(1)
   final String category;
+  
+  @HiveField(2)
   final bool cabinApproved;
 
   Item({

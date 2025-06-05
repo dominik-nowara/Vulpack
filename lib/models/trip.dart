@@ -1,12 +1,27 @@
+import 'package:hive/hive.dart';
 import 'package:vulpack/models/person.dart';
 
-class Trip {
+@HiveType(typeId: 1) // Unique typeId (different from Item's typeId: 0)
+class Trip extends HiveObject {
+  @HiveField(0)
   final String title;
+  
+  @HiveField(1)
   final String destination;
+  
+  @HiveField(2)
   final DateTime fromDate;
+  
+  @HiveField(3)
   final int amountOfNights;
+  
+  @HiveField(4)
   final String category;
+  
+  @HiveField(5)
   final List<Person> persons;
+  
+  @HiveField(6)
   final List<String> activities;
 
   Trip({

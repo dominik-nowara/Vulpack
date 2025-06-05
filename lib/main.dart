@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:vulpack/pages/home_page.dart';
 import 'package:vulpack/services/navigation/navigation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
   runApp(const MyApp());
 }
 
