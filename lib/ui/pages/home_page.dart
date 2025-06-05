@@ -46,6 +46,12 @@ class HomePage extends StatelessWidget {
               },
               child: const Text('Create'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                context.go('/design');
+              },
+              child: const Text('Design'),
+            ),
           ],
         ),
       ),

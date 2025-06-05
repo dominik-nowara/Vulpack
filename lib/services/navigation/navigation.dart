@@ -5,6 +5,7 @@ import 'package:vulpack/ui/pages/create_luggage_page.dart';
 import 'package:vulpack/ui/pages/create_page.dart';
 import 'package:vulpack/ui/pages/create_person_page.dart';
 import 'package:vulpack/ui/pages/deatils_page.dart';
+import 'package:vulpack/ui/pages/designs_page.dart';
 import 'package:vulpack/ui/pages/destination_page.dart';
 import 'package:vulpack/ui/pages/home_page.dart';
 import 'package:vulpack/ui/pages/activities_page.dart';
@@ -73,5 +74,9 @@ final router = GoRouter(
       path: '/settings',
       builder: (context, state) => SettingsPage(),
     ),
+    GoRoute(
+      path: '/design',
+      builder: (context, state) => DesignsPage()
+    )
   ],
 );

@@ -10,8 +10,8 @@ import 'package:vulpack/ui/widgets/listitem.dart';
 import 'package:vulpack/ui/widgets/switch.dart';
 import 'package:vulpack/ui/widgets/tabs.dart';
 
-class LuggagePage extends StatelessWidget {
-  const LuggagePage({super.key});
+class DesignsPage extends StatelessWidget {
+  const DesignsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
